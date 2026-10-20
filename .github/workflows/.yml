@@ -20,15 +20,14 @@ jobs:
 
       - name: Preparar arquivos de distribuição
         run: |
-          mkdir -p dist
-          if [ -f style.css ]; then
-            cp style.css dist/
-          else
-            echo "Aviso: style.css não encontrado, ignorado"
-          fi
-
-      - name: Verificar arquivos de produção
-        run: |
-          echo "Iniciando Pipeline de Preparação..."
-          echo "Arquivos encontrados em dist:"
+          rm -rf dist
+          mkdir dist
+          cp *.html dist/
+          cp -r assets dist/
           ls -R dist/
+
+      - name: Auditoria de Qualidade
+        run: |
+          test -f dist/index.html
+          test -f dist/sobre.html
+          test -f dist/contato.html
