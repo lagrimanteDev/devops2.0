@@ -26,3 +26,9 @@ jobs:
           else
             echo "Aviso: style.css não encontrado, ignorado"
           fi
+
+      - name: Validar arquivos de distribuição
+        run: |
+          test -f dist/index.html
+          test -f dist/style.css
+          echo "Arquivos de distribuição validados com sucesso."
