@@ -47,7 +47,7 @@ reduzem o risco operacional e facilitam auditoria e reproducao.
 
 ### 6. Estrutura final
 
-O workflow valida `index.html`, `sobre.html` e `contato.html`, aplica as regras
+O workflow valida `index.html`, `quem-somos.html` e `contato.html`, aplica as regras
 de `.htmlhintrc` e mostra a quantidade de arquivos HTML encontrados. Para
 observar cada etapa no GitHub, faca um push por experimento e abra o caminho
 `Job -> passo -> log`.
