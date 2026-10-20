@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5546d8;
+      --dark: #111827;
+      --text: #4b5563;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      padding: 24px 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .logo span {
+      color: #a78bfa;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      color: #e5e7eb;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      padding: 11px 20px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 8px;
+      color: var(--white);
+      transition: .3s;
+    }
+
+    .nav-button:hover {
+      background: var(--white);
+      color: var(--dark);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124, 92, 246, .5), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, .35), transparent 30%),
+        linear-gradient(135deg, #111827, #312e81);
+      padding: 120px 0 80px;
+    }
+
+    .hero-content {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #ddd6fe;
+      font-size: .9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: #a78bfa;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 36px;
+      color: #d1d5db;
+      font-size: 1.15rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 9px;
+      font-weight: 700;
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.18);
+    }
+
+    /* Features */
+    .features {
+      padding: 100px 0;
+      background: var(--light);
+    }
+
+    .section-header {
+      max-width: 650px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .section-header small {
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-header h2 {
+      margin: 10px 0 15px;
+      font-size: 2.5rem;
+      line-height: 1.15;
+    }
+
+    .section-header p {
+      color: var(--text);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(15,23,42,.08);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: #ede9fe;
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--text);
+    }
+
+    /* CTA */
+    .cta {
+      padding: 100px 0;
+    }
+
+    .cta-box {
+      padding: 70px 30px;
+      text-align: center;
+      border-radius: 24px;
+      color: var(--white);
+      background: linear-gradient(135deg, #9a8ef5, #4338ca);
+    }
+
+    .cta-box h2 {
+      margin-bottom: 15px;
+      font-size: 2.5rem;
+    }
+
+    .cta-box p {
+      max-width: 580px;
+      margin: 0 auto 30px;
+      color: #e0e7ff;
+    }
+
+    .cta .btn-primary {
+      background: var(--white);
+      color: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      color: #6b7280;
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      .section-header h2,
+      .cta-box h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Nova<span>.</span></a>
+
+        <ul class="nav-links">
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+
+        <a href="#contato" class="nav-button">Começar agora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <span class="badge">Uma nova forma de fazer acontecer</span>
+
+          <h1>
+            Transforme suas ideias em
+            <span>resultados.</span>
+          </h1>
+
+          <p>
+            Uma solução simples, moderna e poderosa para ajudar
+            sua empresa a crescer, conquistar clientes e alcançar
+            novos resultados.
+          </p>
+
+          <div class="buttons">
+            <a href="#contato" class="btn btn-primary">
+              Começar gratuitamente
+            </a>
+
+            <a href="#recursos" class="btn btn-secondary">
+              Conhecer recursos
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RECURSOS -->
+    <section class="features" id="recursos">
+      <div class="container">
+
+        <div class="section-header">
+          <small>Recursos</small>
+          <h2>Tudo o que você precisa em um só lugar</h2>
+          <p>
+            Ferramentas pensadas para simplificar seu trabalho
+            e acelerar seus resultados.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="icon">⚡</div>
+            <h3>Mais produtividade</h3>
+            <p>
+              Automatize tarefas repetitivas e concentre seu tempo
+              no que realmente importa.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3>Dados inteligentes</h3>
+            <p>
+              Tenha uma visão clara dos seus resultados e tome
+              decisões baseadas em informações.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🔒</div>
+            <h3>Segurança</h3>
+            <p>
+              Seus dados protegidos com tecnologia moderna e
+              práticas de segurança confiáveis.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="cta" id="sobre">
+      <div class="container">
+        <div class="cta-box">
+
+          <h2>Pronto para começar?</h2>
+
+          <p>
+            Dê o próximo passo e descubra como uma solução
+            simples pode transformar a maneira como você trabalha.
+          </p>
+
+          <a href="#contato" class="btn btn-primary">
+            Quero começar
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contato">
+    <div class="container">
+      © 2026 Nova. Todos os direitos reservados.
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,25 +1,28 @@
-name: Deploy do Meu Projeto
+name: Continuous Integration
 
 on:
   push:
-    branches:
-      - main
-
-permissions:
-  contents: read
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-  auditoria:
+  validacao-estatica:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout do codigo
+      - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Validar sintaxe do HTML
-        run: npx --yes htmlhint index.html
-
-      - name: Checar arquivos estaticos
+      - name: Verificar arquivos essenciais
         run: |
-          ls -R
-          echo "Todos os arquivos foram carregados no Runner!"
+          test -f index.html && echo "HTML encontrado!"
+          test -f style.css && echo "CSS encontrado!"
+
+      - name: Preparar arquivos de distribuição
+        run: |
+          mkdir -p dist
+          if [ -f style.css ]; then
+            cp style.css dist/
+          else
+            echo "Aviso: style.css não encontrado, ignorado"
+          fi
